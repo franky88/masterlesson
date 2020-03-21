@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
 from .models import StudentName
-from .forms import StudentAddForm
+from .forms import StudentAddForm, StudentEditForm
 # Create your views here.
 def student_list(request):
-    student_list = StudentName.objects.all().order_by("-timestamp")
+    student_list = StudentName.objects.all()
     context = {
         "title": "student list",
         "studentlist": student_list,
@@ -29,4 +30,16 @@ def student_add(request):
         "form": form,
     }
     return render(request, "students/student_add.html", context)
-    
+def student_edit(request, pk):
+	instance=get_object_or_404(StudentName, pk=pk)
+	form = StudentEditForm(request.POST or None, request.FILES or None, instance=instance)
+	if form.is_valid():
+		instance=form.save(commit=False)
+		instance.save()
+		return redirect('student:list')
+	context = {
+		"form": form,
+		"title": "edit student",
+		"instance": instance,
+	}
+	return render(request, "students/student_edit.html", context)

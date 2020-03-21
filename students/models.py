@@ -20,11 +20,14 @@ class StudentName(models.Model):
     l_name = models.CharField(max_length=60, verbose_name='last name')
     e_name = models.CharField(max_length=60, verbose_name='extension name', blank=True)
     birth_date = models.DateField(blank=True, null=True, verbose_name='birth day', help_text='YYYY-mm-dd')
-    disability = models.ForeignKey(Disability, on_delete=models.CASCADE, verbose_name='child diagnosis', blank=True, null=True)
+    # disability = models.ForeignKey(Disability, on_delete=models.CASCADE, verbose_name='child diagnosis', blank=True, null=True)
+    disability = models.ManyToManyField(Disability)
     school_status = models.BooleanField(default=True, verbose_name='schooling status')
     block = models.ForeignKey(Block, on_delete=models.CASCADE, blank=True, null=True, verbose_name='section')
     timestamp = models.DateTimeField(auto_now_add=True, verbose_name='added')
     updated = models.DateTimeField(auto_now=True, verbose_name='updated')
+    class Meta:
+        ordering = ['-timestamp']
     def calculate_age(self):
         today = date.today()
         born = self.birth_date
