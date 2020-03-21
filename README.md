@@ -1,2 +1,2 @@
 # masterlesson
-Student monitoring and lesson sycronization
+Student monitoring and lesson synchronization
