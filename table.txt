@@ -1,0 +1,10 @@
+Students
+    - Names
+    - block
+    - Attendance
+    - Schedules
+    - lessons
+    - type_of_disability
+Teacher
+    - block
+    - Schedules
