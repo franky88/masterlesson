@@ -2,5 +2,7 @@
 
 {% block content %}
 <h3>{{title|title}}</h3>
+<a href="{%url 'student:edit' pk=instance.id%}" class="btn btn-outline-success btn-sm">Edit</a>
+<hr>
 {{instance.f_name|title}}
 {% endblock %}

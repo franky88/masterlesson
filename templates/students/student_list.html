@@ -16,23 +16,21 @@
               <th scope="col">Birth Date</th>
               <th scope="col">Age</th>
               <th scope="col">School Status</th>
-              <th scope="col">Teacher</th>
-              <th scope="col">Details</th>
-              <th scope="col">Edit</th>
+              <!-- <th scope="col">Teacher</th> -->
             </tr>
           </thead>
           <tbody>
             {% for student in request.user.studentname_set.all %}
             <tr>
               <th scope="row">{{ forloop.counter }}</th>
-              <td>{{student.f_name|title}}</td>
+              <td><a href="{%url 'student:detail' pk=student.id%}">{{student.f_name|title}}</a></td>
               <td>{{student.l_name|title}}</td>
               <td>{{student.birth_date}}</td>
               <td>{{student.calculate_age}}</td>
               <td>{{student.school_status|yesno:'In School,Not in School'}}</td>
-              <td>{{student.user.get_full_name|title}}</td>
-              <td><a href="{%url 'student:detail' pk=student.id%}" class="btn btn-outline-primary btn-sm">Details</a></td>
-              <td><a href="{%url 'student:edit' pk=student.id%}" class="btn btn-outline-success btn-sm">Edit</a></td>
+              <!-- <td>{{student.user.get_full_name|title}}</td> -->
+              <!-- <td><a href="{%url 'student:detail' pk=student.id%}" class="btn btn-outline-primary btn-sm">Details</a></td>
+              <td><a href="{%url 'student:edit' pk=student.id%}" class="btn btn-outline-success btn-sm">Edit</a></td> -->
             </tr>
             {% endfor %}
           </tbody>
